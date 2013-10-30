@@ -3126,6 +3126,9 @@ ngGridDirectives.directive('ngGrid', ['$compile', '$filter', '$templateCache', '
                                 $scope.$emit("ngGridEventData", grid.gridId);
                             };
                             $scope.$parent.$watch(options.data, dataWatcher);
+                            $scope.$parent.$watch(iAttrs.ngGrid + '.refresh', function() {
+                                dataWatcher($scope.$eval(options.data));
+                            });
                             $scope.$parent.$watch(options.data + '.length', function() {
                                 dataWatcher($scope.$eval(options.data));
                             });
